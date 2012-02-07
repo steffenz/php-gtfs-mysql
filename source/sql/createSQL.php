@@ -1,12 +1,24 @@
 <meta charset="UTF-8">
 <?php
-include('sql-connect.php');
-mysql_select_db("gtfs-demo");
+
+ini_set('memory_limit', '512M');
+set_time_limit(0);
+
+$files = $_GET['files'];
+
+if(substr($files, -1) == ";") {
+$files = substr($files,0, -1);
+}
+
+$addFiles = explode(";", $files);
+
+include('../../sql-connect.php');
+mysql_select_db("$dbname");
 mysql_set_charset('utf8'); 
 
 
 function makeSQL($fileName, $tablename) {
-	$raw = file_get_contents("gtfs/$fileName");
+	$raw = file_get_contents("../../gtfs/$fileName");
 	$lines = explode("\n", $raw);
 	$tableHeaders = $lines[0];
 	unset($lines[0]);
@@ -26,9 +38,11 @@ function makeSQL($fileName, $tablename) {
 	
 }
 
+foreach ($addFiles as $file) {
+$nameOnly = explode(".", $file);
+makeSQL("$file", "$nameOnly[0]");
+}
 
-makeSQL("calendar_dates.txt", "calendar_dates");
-
-
+echo "Done!";
 
 ?>

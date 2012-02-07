@@ -1,0 +1,76 @@
+body {
+	background: #f9f9f9;
+	margin:0;
+	padding:0;
+	font-family: Helvetica;
+	}
+	
+	#kontainer {
+	width:700px;
+	margin:0 auto;
+	background: #fff;
+	border:1px solid #f4f4f4;
+	}
+	
+	h1 {
+	font-size:22px;
+	}
+	
+	p {
+	font-size:12px;
+	padding-left:30px;
+	padding-right:30px;
+	padding-top:5px;
+	padding-bottom:20px;
+	}
+	
+	#kontainer input {
+	width:200px;
+	border:1px solid #f3f3f3;
+	text-align: center;
+	padding:5px;
+	outline:none;
+	}
+	
+	#mysqlnfo {
+	font-size: 12px;
+	margin-left:100px;
+	}
+	
+	
+	/* wpstyle buttons http://blog.sachinkraj.com/how-to-design-buttons-like-wordpress/ */
+	.button {
+ display: inline-block;  
+    outline: none;  
+    cursor: pointer;  
+    text-align: center;  
+    text-decoration: none;  
+    font: 12px/100% Arial, Helvetica, sans-serif;  
+    padding: .4em 1.2em .4em;  
+    text-shadow: 0 1px 1px rgba(255,255,255,.5);  
+    -webkit-border-radius: 1.4em;  
+    -moz-border-radius: 1.4em;  
+    border-radius: 1.4em;  
+  
+    color:#222222;  
+    border: solid 1px #dddddd;  
+    background: #eeeeee;  
+    background: -webkit-gradient(linear, left top, left bottombottom, from(#ffffff), to(#cccccc));  
+    background: -moz-linear-gradient(top,  #cccccc,  #ffffff);  
+	
+	}
+	
+	.button:hover {
+	text-decoration: none;  
+    color:#111111;  
+    border: solid 1px #aaaaaa;
+	}
+	
+	.button:active {
+	color:#222222;  
+    border: solid 1px #aaaaaa;  
+    background: #eeeeee;  
+    background: -webkit-gradient(linear, left top, left bottombottom, from(#ccccccc), to(#ffffff));  
+    background: -moz-linear-gradient(top,  #ffffff,  #cccccc);  
+	}
+	

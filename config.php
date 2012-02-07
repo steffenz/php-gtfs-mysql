@@ -1,19 +1,6 @@
-<?php
-
-/*
- * mySQL Setup:
- *
- * You need to setup these properly. 
- * The 'sqlHost' is typically localhost
- *
- */
-
-$sqlUser 	= "root";
-$sqlPass 	= "root";
-$sqlHost 	= "localhost:8889";
-$sqlTable 	= "my-awesome-table";
-$sqlCharset = "utf8";
-
-
-
+<?php 
+$username = "root";
+$password = "root";
+$host = "localhost:8889";
+$dbname = "rutedata-demo";
 ?>

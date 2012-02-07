@@ -1,0 +1,48 @@
+PHP GTFS MySQL IMPORT WITH GUI
+Author: Steffen Martinsen (steffen@steffenmedia.no - @kverdagshelt)
+
+This is a PHP "app" that reads files from a provided GTFS feed and puts the data into a MySQL table via a GUI (Graphical User Interface) that totally looks like the Wordpress setup (and should be just as easy to operate).
+This was originally written to fetch GTFS data for Kolumbus (www.kolumbus.no) GTFS feed, and might require some modification to work properly with other GTFS sets although it should detect most of it. 
+
+USAGE:
+1. Download/clone
+2. Unzip GTFS zip and add all .txt files into the "gtfs" folder at the root of this repo.
+3. Upload it, or run it locally with PHP and follow the on-screen guide.
+
+
+FILES (And stuff they do):
+
+- index.php
+contains some HTML and links to CSS to make the GUI looks slick and smooth. It also performs a check to see if the config file is created. If not, it includes a script that will help you create one.
+
+- sql-connect.php
+connects to your mysql database provided in the config file. If the config file does not exist, launch index.php to create it.
+
+- gtfs/
+the gtfs folder contains the raw gtfs .txt files. by default it contains an empty file called ADD GTFS FILES HERE which is what one would except. Add the .txt files here!
+
+- source/gfx/
+doesn't contain anything really. I thought i should provide some graphics but it wasn't necessary really :)
+
+- source/css/
+contains one stylesheet to provide a somewhat simple graphical user interface.
+
+- source/pages/makeconfig.php
+is the file index php includes if no config file is provided. basically it helps you create a config file.
+
+- source/pages/checkForm.php
+checks if the provided data to the config file is correct. this only applies if you created the config file through makeconfig.php
+
+- source/pages/createTables.php
+displays a list to the user with the tables that are being created.
+
+- source/pages/fillTables.php
+displays a list of default gtfs files, and which of those is found. files that is found appears in green, while files thats missing appears in red. missing files are ignored while importing to mysql table.
+
+-source/sql/makeTables.php
+creates the sql skeleton of tables automatically to the desired/provided database.
+
+-source/sql/createSQL.php
+reads the files in the gtfs folder, and puts them into the mysql database. this might take some time. default allocated memory is 512M and it shouldn't timeout. might screw things up if you have large files and running php in safe_mode.
+
+// Steffen Martinsen Tuesday 07.02.2012

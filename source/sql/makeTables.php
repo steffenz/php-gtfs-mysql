@@ -1,7 +1,6 @@
 <?php
-
-$dbName = "gtfs-demo";
-include('sql-connect.php');
+include('../../sql-connect.php');
+$dbName = $dbname;
 
 // SQL Queries to create all needed tables to fill with data!
 // Don't change any of this unless you know what you're doing.
@@ -118,6 +117,8 @@ mysql_query($sqlRoutes);
 mysql_query($sqlStopTimes);
 mysql_query($sqlStops);
 mysql_query($sqlTrips);
+
+header("Location: ../../index.php?tables=ready");
 
 
 ?>
