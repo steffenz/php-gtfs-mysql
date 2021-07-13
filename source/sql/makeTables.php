@@ -17,6 +17,7 @@ agency_url varchar(255),
 agency_timezone varchar(255),
 agency_lang varchar(255),
 agency_phone varchar(255),
+agency_fare_url varchar(255),
 PRIMARY KEY(agency_id)
 )
 ";
@@ -47,7 +48,7 @@ exception_type int(2)
 
 $sqlRoutes = "
 CREATE TABLE routes(
-route_id int(11),
+route_id varchar(255),
 agency_id varchar(255),
 route_short_name varchar(255),
 route_long_name varchar(255),
@@ -61,7 +62,7 @@ PRIMARY KEY(route_id)
 
 $sqlStopTimes = "
 CREATE TABLE stop_times(
-trip_id int(11),
+trip_id varchar(255),
 arrival_time time,
 arrival_time_seconds int(11),
 departure_time time,
@@ -80,8 +81,8 @@ stop_id int(11),
 stop_code varchar(255),
 stop_name varchar(255),
 stop_desc varchar(255),
-stop_lat decimal(8,6),
-stop_lon decimal(8,6),
+stop_lat decimal(9,6),
+stop_lon decimal(9,6),
 zone_id int(11),
 stop_url varchar(255),
 location_type int(2),
@@ -89,37 +90,48 @@ parent_station int(11),
 PRIMARY KEY(stop_id)
 )";
 
+$sqlShapes = "
+CREATE TABLE shapes(
+shape_id varchar(255),
+shape_pt_lat decimal(9,6),
+shape_pt_lon decimal(9,6),
+shape_pt_sequence int(11),
+shape_dist_traveled float,
+PRIMARY KEY(shape_id)
+)";
 
 $sqlTrips = "
 CREATE TABLE trips(
-route_id int(11),
+route_id varchar(255),
 service_id varchar(255),
-trip_id int(11),
+trip_id varchar(255),
 trip_headsign varchar(255),
 trip_short_name varchar(255),
 direction_id tinyint(1),
 block_id int(11),
 shape_id int(11),
+wheelchair_accessible tinyint(1),
+trip_time int(11),
 PRIMARY KEY(trip_id)
 )";
 
 
 // Creates and selects DB
-mysql_query($createDB);
-mysql_select_db($dbName);
+mysqli_query($tilkobling,$createDB);
+mysqli_select_db($tilkobling,$dbName);
 
 // Create the tables for GTFS data
 
-mysql_query($sqlAgency);
-mysql_query($sqlCalendar);
-mysql_query($sqlCalendarDates);
-mysql_query($sqlRoutes);
-mysql_query($sqlStopTimes);
-mysql_query($sqlStops);
-mysql_query($sqlTrips);
+mysqli_query($tilkobling,$sqlAgency);
+mysqli_query($tilkobling,$sqlCalendar);
+mysqli_query($tilkobling,$sqlCalendarDates);
+mysqli_query($tilkobling,$sqlRoutes);
+mysqli_query($tilkobling,$sqlStopTimes);
+mysqli_query($tilkobling,$sqlStops);
+mysqli_query($tilkobling,$sqlShapes);
+mysqli_query($tilkobling,$sqlTrips);
 
 header("Location: ../../index.php?tables=ready");
 
 
 ?>
-
