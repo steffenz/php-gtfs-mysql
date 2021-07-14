@@ -11,7 +11,7 @@ die();
 }
 
 
-$tilkobling = mysql_connect("$host", "$username", "$password");
+$tilkobling = mysqli_connect("$host", "$username", "$password");
 if (!$tilkobling) {
 	header("Location: ../../index.php?error=sql");
 }
